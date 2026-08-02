@@ -31,6 +31,7 @@ public class NotesService {
     public NotesResponseDto createNotes(Long taskId, NotesRequestDto notesRequestDto) {
         Task task=checkTaskById(taskId);
         Notes notes = modelMapper.map(notesRequestDto, Notes.class);
+        notes.setTask(task);
         task.getNotes().add(notes);
         taskRepository.save(task);
         return modelMapper.map(notesRepository.save(notes),NotesResponseDto.class);
@@ -62,11 +63,11 @@ public class NotesService {
     public NotesResponseDto updateNotes(Long taskId, Long notesId, UpdateNotesRequestDto updateNotes) {
         Task task = checkTaskById(taskId);
         Notes notes=notesRepository.findById(notesId).orElseThrow(() -> new NotesNotFoundException(notesId));
-        if(updateNotes.getNotesContent()!=null){
-            notes.setNoteContent(updateNotes.getNotesContent());
+        if(updateNotes.getNoteContent()!=null){
+            notes.setNoteContent(updateNotes.getNoteContent());
         }
-        if(updateNotes.getNotesTitle()!=null){
-            notes.setNoteTitle(updateNotes.getNotesTitle());
+        if(updateNotes.getNoteTitle()!=null){
+            notes.setNoteTitle(updateNotes.getNoteTitle());
         }
 
         return modelMapper.map(notesRepository.save(notes), NotesResponseDto.class);

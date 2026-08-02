@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class UpdateNotesRequestDto {
     @Size(min = 3,max = 50)
-    private String notesTitle;
+    private String noteTitle;
     @Size(min = 3,max = 5000)
-    private String notesContent;
+    private String noteContent;
 }

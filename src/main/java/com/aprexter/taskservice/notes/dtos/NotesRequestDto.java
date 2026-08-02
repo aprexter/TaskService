@@ -11,8 +11,8 @@ import lombok.Setter;
 public class NotesRequestDto {
     @NotBlank(message = "Notes title is required")
     @Size(min = 3,max = 50)
-    private String notesTitle;
+    private String noteTitle;
     @NotBlank(message = "Notes Content is required ")
     @Size(min = 3,max = 5000)
-    private String notesContent;
+    private String noteContent;
 }

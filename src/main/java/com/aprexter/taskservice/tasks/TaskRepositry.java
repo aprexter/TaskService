@@ -10,4 +10,6 @@ import java.util.List;
 public interface TaskRepositry extends JpaRepository<Task, Long> {
     @Override
     List<Task> findAll();
+
+    void deleteByIdAndId(Long id, Long id1);
 }

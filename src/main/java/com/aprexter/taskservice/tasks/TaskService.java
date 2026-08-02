@@ -6,6 +6,7 @@ import com.aprexter.taskservice.tasks.dtos.TaskResponseDto;
 import com.aprexter.taskservice.tasks.dtos.UpdateTaskRequestDto;
 import com.aprexter.taskservice.tasks.exceptions.TaskNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 import org.springframework.ui.ModelMapExtensionsKt;
@@ -17,6 +18,7 @@ import java.util.List;
 public class TaskService {
     private final TaskRepositry taskRepositry;
     private final ModelMapper modelMapper;
+    @Autowired
     public TaskService(TaskRepositry taskRepositry, ModelMapper modelMapper) {
         this.taskRepositry = taskRepositry;
         this.modelMapper = modelMapper;

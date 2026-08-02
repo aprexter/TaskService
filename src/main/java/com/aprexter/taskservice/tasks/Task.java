@@ -4,6 +4,7 @@ import com.aprexter.taskservice.common.BaseModel;
 import com.aprexter.taskservice.notes.Notes;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class Task extends BaseModel {
     private Boolean completed;
     @Column(nullable = false)
     private Date dueDate;
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task",fetch = FetchType.EAGER)
+
     private List<Notes> notes;
 }

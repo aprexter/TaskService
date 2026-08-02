@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NotesRepositry extends JpaRepository<Notes, Long> {
 
+    void deleteNotesBy(Long id);
 }
