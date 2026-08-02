@@ -1,6 +1,6 @@
 package com.aprexter.taskservice.tasks;
 
-import com.aprexter.taskservice.BaseModel;
+import com.aprexter.taskservice.common.BaseModel;
 import com.aprexter.taskservice.notes.Notes;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString(callSuper = true)
 public class Task extends BaseModel {
     @Column(nullable = false, length = 50)
     private String title;

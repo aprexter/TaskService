@@ -47,7 +47,7 @@ public class TaskController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<TaskResponseDto> updateTask(@PathVariable("id") Long id, @RequestBody UpdateTaskRequestDto updateTaskRequestDto) {
+    public ResponseEntity<TaskResponseDto> updateTask(@PathVariable("id") Long id,@Valid @RequestBody UpdateTaskRequestDto updateTaskRequestDto) {
         TaskResponseDto responseDto=taskService.updateTask(id,updateTaskRequestDto);
         return ResponseEntity.ok(responseDto);
     }
@@ -58,11 +58,8 @@ public class TaskController {
     }
 
     @ExceptionHandler(TaskNotFoundException.class)
-    public ResponseEntity<ExceptionResponseDto> handleTaskNotFoundException(Exception e) {
-        if(e instanceof TaskNotFoundException) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponseDto(e.getMessage()));
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<ExceptionResponseDto> handleTaskNotFoundException(TaskNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponseDto(ex.getMessage()));
     }
 
 

@@ -15,7 +15,6 @@ public class CreateTaskDto {
     @NotBlank(message = "Description is required with rnage in between 1 to 200")
     @Size(min = 1, max = 200)
     private String description;
-    private Boolean completed;
     @NotNull(message = "Date can't be null")
     @FutureOrPresent(message = "Date must be in future or Present")
     private Date dueDate;

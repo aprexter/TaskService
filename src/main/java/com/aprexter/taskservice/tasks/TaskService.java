@@ -36,14 +36,14 @@ public class TaskService {
         return modelMapper.map(taskRepositry.save(task),TaskResponseDto.class);
     }
     public TaskResponseDto getTaskById(Long taskId) {
-        Task task=taskRepositry.findById(taskId).orElseThrow(()->new TaskNotFoundException(taskId));
+        Task task=checkTaskById(taskId);
+
 
         return  modelMapper.map(task,TaskResponseDto.class);
     }
     public TaskResponseDto updateTask(Long id, UpdateTaskRequestDto request) {
 
-        Task task = taskRepositry.findById(id).orElseThrow(()->new TaskNotFoundException(id));
-
+        Task task=checkTaskById(id);
         if (request.getTitle() != null) {
             task.setTitle(request.getTitle());
         }
@@ -59,7 +59,12 @@ public class TaskService {
     }
 
     public void deleteTask(Long taskId) {
-        Task task=taskRepositry.findById(taskId).orElseThrow(()->new TaskNotFoundException(taskId));
+        taskRepositry.findById(taskId).orElseThrow(()->new TaskNotFoundException(taskId));
         taskRepositry.deleteById(taskId);
+    }
+
+    private Task checkTaskById(Long taskId) {
+        Task task = taskRepositry.findById(taskId).orElseThrow(()->new TaskNotFoundException(taskId));
+        return task;
     }
 }

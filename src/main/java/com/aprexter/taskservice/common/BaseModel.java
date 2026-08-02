@@ -1,4 +1,4 @@
-package com.aprexter.taskservice;
+package com.aprexter.taskservice.common;
 
 import jakarta.persistence.*;
 import lombok.Getter;
